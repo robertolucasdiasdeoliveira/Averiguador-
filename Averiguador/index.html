@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Máquina de Averiguar Resenha</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(180deg, #000000, #111111);
+            color: white;
+        }
+
+        .container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        img, video {
+            width: 90%;
+            max-width: 320px;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+        }
+
+        video {
+            display: none;
+        }
+
+        .botoes {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .sim {
+            background-color: #00ff88;
+            color: black;
+        }
+
+        .nao {
+            background-color: #ff004c;
+            color: white;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            font-size: 26px;
+            font-weight: bold;
+            opacity: 0;
+            transition: 0.5s;
+        }
+
+        .mostrar {
+            opacity: 1 !important;
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            button {
+                font-size: 16px;
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Você gostaria de averiguar resenha?</h1>
+
+        <!-- IMAGEM -->
+        <img id="memeImg" src="https://img2.lovecell.com.br/c1d5590abc27337de5243335af1bee8d3f1dfbd6fa7c71475eed3c76d4ff7f4e.webp">
+
+        <!-- VIDEO (RENOMEIE SE PRECISAR) -->
+        <video id="memeVideo" loop muted>
+            <source src="video.mp4" type="video/mp4">
+        </video>
+
+        <!-- BOTÕES -->
+        <div class="botoes">
+            <button class="sim" onclick="verificar()">Sim</button>
+            <button class="nao" onclick="verificar()">Não</button>
+        </div>
+
+        <!-- RESULTADO -->
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        function verificar() {
+            const resultado = document.getElementById("resultado");
+            const img = document.getElementById("memeImg");
+            const video = document.getElementById("memeVideo");
+
+            const sorteio = Math.random();
+
+            if (sorteio < 0.5) {
+                resultado.textContent = "RESENHA LIBERADA 😎🔥";
+
+                img.style.display = "none";
+                video.style.display = "block";
+                video.currentTime = 0;
+                video.play();
+
+            } else {
+                resultado.textContent = "RESENHA CANCELADA 😭❌";
+
+                video.pause();
+                video.style.display = "none";
+
+                img.style.display = "block";
+                img.src = "https://img2.lovecell.com.br/69de06612fe932c17fe4082c43fdc189ee9846a821bea3f6aa9793bd32043af9.webp";
+            }
+
+            resultado.classList.remove("mostrar");
+            void resultado.offsetWidth;
+            resultado.classList.add("mostrar");
+        }
+    </script>
+</body>
+</html>
